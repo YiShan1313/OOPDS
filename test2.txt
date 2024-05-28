@@ -1,4 +1,0 @@
-hello my friend
-<<<<<<< HEAD
-test
-sdadadasssssssssssssssssssssssssss
