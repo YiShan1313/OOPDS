@@ -1,0 +1,311 @@
+// #include<iostream>
+// using namespace std;
+
+// class Battlefield 
+// {
+// private:
+//     int rows;
+//     int cols;
+//     string** grid;
+
+// public:
+//     Battlefield(int r, int c) {
+//         rows = r;  
+//         cols = c;  
+
+//         grid = new string*[rows];
+//         for (int i = 0; i < rows; ++i) {
+//             grid[i] = new string[cols];
+//             for (int j = 0; j < cols; ++j) {
+//                 grid[i][j] = '.'; 
+//             }
+//         }
+//     }
+
+//     ~Battlefield() {
+//         for (int i = 0; i < rows; ++i) {
+//             delete[] grid[i];
+//         }
+//         delete[] grid;
+//     }
+
+//     void display() const {
+//         for (int i = 0; i < rows; ++i) {
+//             for (int j = 0; j < cols; ++j) {
+//                 cout << grid[i][j] << ' ';
+//             }
+//             cout << endl;
+//         }
+//     }
+
+//     void placeRobot(int x, int y, string r_name)
+//     {
+//         if (x >= 0 && x < rows && y >= 0 && y < cols) {
+//             grid[x][y] = r_name;
+//         }
+//     }
+
+//     void removeRobot(int x, int y) 
+//     {
+//         if (x >= 0 && x < rows && y >= 0 && y < cols) 
+//         {
+//             grid[x][y] = '.';
+//         }
+        
+//     }    
+
+//     int getrow()
+//     {
+//         return rows;
+//     }
+
+//     int getcol()
+//     {
+//         return cols;
+//     }
+
+//     string getPosition (int x, int y) const {
+//         if (x >= 0 && x < rows && y >= 0 && y < cols) {
+//             return grid[x][y];
+//         }
+//         return " ";
+//     }
+//     bool view(int x, int y) {
+//         for (int i = x - 1; i <= x + 1; ++i) {
+//             for (int j = y - 1; j <= y + 1; ++j)
+//             {
+//                 if (i == x && j == y) continue; 
+//                 if (i >= 0 && i < getrow() && j >= 0 && j < getcol() && getPosition(i, j) != ".") 
+//                 {
+//                     return true; 
+//                     cout << "have a robot";
+//                 }
+//             }
+//         }
+//         return false; 
+//     }
+// };
+
+// // class SeeingRobot : public Battlefield
+// // {
+// //     public:
+// //     bool view(int x, int y) {
+// //         for (int i = x - 1; i <= x + 1; ++i) {
+// //             for (int j = y - 1; j <= y + 1; ++j) {
+// //                 if (i == x && j == y) continue; 
+// //                 if (i >= 0 && i < getrow() && j >= 0 && j < getcol() && getPosition(i, j) != ".") {
+// //                     return true; 
+// //                 cout << "a robot";
+// //                 }
+// //             }
+// //         }
+// //         return false; 
+// //     }
+// //     SeeingRobot(int x,int y):Battlefield(x,y){}
+// // };
+
+// class MovingRobot
+// {
+//     public:
+//     void move(){}
+// };
+
+// int main()
+// {   
+//     Battlefield map (20,60);
+//     map.placeRobot(1,29,"Banny");
+//     map.placeRobot(13,34,"WW");
+//     map.placeRobot(13,33,"Y");
+//     map.removeRobot(1,29);
+//     map.display();
+//     map.view(13,34);
+
+//     return 0;
+// }
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+static const int row = 20;
+static const int col = 20;
+
+class field
+{
+    protected:
+        char grid[row][col];
+
+    public:
+        field()
+        {
+            for (int i = 0; i < row; i++)
+            {
+
+                for (int j = 0; j < col; j++)
+                {
+                    grid[i][j] = ' ';
+                }
+            }
+        }
+
+        void place(string name, int posx, int posy)
+        {
+            if (posx >= 0 && posx < row && posy >= 0 && posy < col && !name.empty())
+            {
+                char test = name[0];
+                grid[posx][posy] = test;
+            }
+        }
+
+        void display()
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    if (grid[i][j] == ' ')
+                    {
+                        cout << " * ";
+                    }
+
+                    else
+                    {
+                        cout << " " << grid[i][j] << " ";
+                    }
+                }
+                cout << endl;
+            }
+        }
+};
+
+class movement : public field
+{
+    public:
+        void move(string name, int &moves)
+        {
+            int posx = -1;
+            int posy = -1;
+
+            for(int i = 0; i < row; i++)
+            {
+                for(int j = 0; j < col; j++)
+                {
+                    if (grid[i][j] == name[0])
+                    {
+                        posx = i;
+                        posy = j;
+                        break;
+                    }
+                }
+
+                if(posx != -1 && posy != -1)
+                {
+                    break;
+                }
+            }
+        
+
+        if (posx != -1 && posy != -1)
+        {
+            int direct = rand() % 8;
+
+            switch (direct)
+            {
+                case 0:
+                    if (posx > 0)
+                    {
+                        grid[posx][posy] = ' ';
+                        grid[posx - 1][posy] = name[0];
+                    }
+                    break;
+                case 1:
+                    if (posx > 0)
+                    {
+                        grid[posx][posy] = ' ';
+                        grid[posx][posy - 1] = name[0];
+                    }
+                    break;
+                case 2:
+                    if (posx > 0)
+                    {
+                        grid[posx][posy] = ' ';
+                        grid[posx + 1][posy] = name[0];
+                    }
+                    break;
+                case 3:
+                    if (posx > 0)
+                    {
+                        grid[posx][posy] = ' ';
+                        grid[posx][posy + 1] = name[0];
+                    }
+                    break;
+                case 4:
+                    if (posx > 0)
+                    {
+                        grid[posx][posy] = ' ';
+                        grid[posx - 1][posy - 1] = name[0];
+                    }
+                    break;
+                case 5:
+                    if (posx > 0)
+                    {
+                        grid[posx][posy] = ' ';
+                        grid[posx + 1][posy + 1] = name[0];
+                    }
+                    break;
+                case 6:
+                    if (posx > 0)
+                    {
+                        grid[posx][posy] = ' ';
+                        grid[posx + 1][posy - 1] = name[0];
+                    }
+                    break;
+                case 7:
+                    if (posx > 0)
+                    {
+                        grid[posx][posy] = ' ';
+                        grid[posx - 1][posy + 1] = name[0];
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            moves--;
+        }
+
+        }
+};
+
+int main()
+{
+    srand (time(0));
+
+    movement test;
+    test.place("zeno", 5, 5);
+    test.place("ali", 7, 5);
+    test.display();
+    cout << endl;
+
+    int zeno_moves = 20;
+    int ali_moves = 20;
+
+    while (zeno_moves > 0 || ali_moves > 0)
+    {
+        if (zeno_moves > 0)
+        {
+            test.move("zeno", zeno_moves);
+        }
+
+        if (ali_moves > 0)
+        {
+            test.move("ali", ali_moves);
+        }
+
+        test.display();
+        cout << endl;
+    }
+
+    return 0;
+}
