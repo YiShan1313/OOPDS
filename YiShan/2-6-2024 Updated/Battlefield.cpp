@@ -60,7 +60,7 @@ void Battlefield::display(Robot* Robots[], int numRobots) const {
     } 
 }
 
-void Battlefield::updatePos(Robot* const robot,int prev_X = -1, int prev_Y = -1){
+void Battlefield::updatePos(Robot* const robot,int prev_X, int prev_Y){
     if(prev_X != -1 || prev_Y != -1)
         grid[prev_X][prev_Y] = nullptr; 
 
@@ -79,5 +79,8 @@ bool Battlefield::isEmptyPos(int x, int y)const{
 }
 
 Robot* Battlefield::getRobot(int x, int y)const{
-    return grid[x][y];
+    if(x < getrow() && y < getcol())
+        return grid[x][y];
+    else
+        return nullptr;
 }

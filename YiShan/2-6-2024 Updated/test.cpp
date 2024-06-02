@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Robot.h"
 #include "Battlefield.h"
-#include "Battlefield.cpp"
 using namespace std;
 
 int getRand(int max) {
@@ -62,46 +61,74 @@ public:
     }
 
     void move(Robot** robots, Battlefield &Test) {
+        int counter = 0;
+        for(int i = 0 ; i < 9 ; i++){
+            if(robots[i] != nullptr){
+                counter++;
+            }
+        }
+
+        if((Test.getcol() - 1 == getPos_X() && Test.getrow() - 1 == getPos_Y()) || (getPos_X() == 0 && Test.getrow() - 1 == getPos_Y()) || (Test.getcol() - 1 == getPos_X() && getPos_Y() == 0) || (getPos_X() == 0 && getPos_Y() == 0)){
+            // cout << counter;
+            if(counter == 4){
+                cout << "Robot" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
+                return;
+            }
+        }
+        else if(Test.getcol() - 1 == getPos_X() || Test.getrow() - 1 == getPos_Y() || getPos_X() == 0 || getPos_Y() == 0){
+            // cout << counter;
+            if(counter == 6){
+                cout << "Robot" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
+                return;
+            }
+        }else{
+            // cout << counter;
+            if(counter == 9){
+                cout << "Robot" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
+                return;
+            }
+        }
+
+
+        cout << "move RobotCop" << endl;
         bool existBot = true;
         int moveTo_X = -1;
         int moveTo_Y = -1;
 
         while(existBot){
-            while((moveTo_X > Test.getrow() && moveTo_Y > Test.getcol()) || (moveTo_X < 0 && moveTo_Y < 0)){
-                int x = getRand(2) - 1 ;
-                int y = getRand(2) - 1 ;
+            int x = rand()%3 - 1 ;
+            int y = rand()%3 - 1 ;
+            moveTo_X = getPos_X() + x;
+            moveTo_Y = getPos_Y() + y;
 
-                while(absValue(x) + absValue(y) == 0){
-                    x = getRand(2) - 1 ;
-                    y = getRand(2) - 1 ;
-                }
-
+            while(moveTo_X >= Test.getrow() || moveTo_Y >= Test.getcol() || moveTo_X < 0 || moveTo_Y < 0){
+                x = rand()%3 - 1 ;
+                y = rand()%3 - 1 ;
                 moveTo_X = getPos_X() + x;
                 moveTo_Y = getPos_Y() + y;
-                
-                for(int i = 0 ; i < 9 ; i++){
-                    if(robots[i] != nullptr){
-                        if(robots[i]->getPos_X() == moveTo_X && robots[i]->getPos_Y() == moveTo_Y){
-                            existBot = true;
-                            cout << "ExistBot True~" << moveTo_X << " , " << moveTo_Y << endl;
-                            break;
-                        }
-                    }
+            }
 
-                    existBot = false;
-                    cout << "ExistBot False~" << endl;
+            // cout << "Trying to Move to (" << moveTo_X << " , " << moveTo_Y << ")" << endl;
+            
+            for(int i = 0 ; i < 9 ; i++){
+                if(robots[i] != nullptr){
+                    if(robots[i]->getPos_X() == moveTo_X && robots[i]->getPos_Y() == moveTo_Y){
+                        existBot = true;
+                        // cout << "ExistBot True~" << moveTo_X << " , " << moveTo_Y << endl;
+                        break;
+                    }
                 }
 
-                cout << "Moving to " << moveTo_X << " , " << moveTo_Y << endl ;
-                int prev_X = getPos_X();
-                int prev_Y = getPos_Y();
-                setPosition(moveTo_X, moveTo_Y);
-                Test.updatePos(this, prev_X, prev_Y);
+                existBot = false;
+                // cout << "ExistBot False~" << endl;
             }
         }
 
-        // if (abs(x) > 1 || abs(y) > 1)
-        //     throw "X or Y value is > 1, Can only Move Neighbourhood";
+        cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl ;
+        int prev_X = getPos_X();
+        int prev_Y = getPos_Y();
+        setPosition(moveTo_X, moveTo_Y);
+        Test.updatePos(this, prev_X, prev_Y);
     }
 
     void fire(int x, int y) {
@@ -198,7 +225,7 @@ public:
 Robot** seePos(int x, int y, Battlefield &Test){
     Robot** pos = new Robot*[9]{nullptr};
 
-    cout << "seePos Calling at " << x << ", " << y << endl;
+    // cout << "seePos Calling at " << x << ", " << y << endl;
 
     for(int i = 0 ; i < 3 ; i++){
         for(int j = 0 ; j < 3 ; j++){
@@ -206,10 +233,12 @@ Robot** seePos(int x, int y, Battlefield &Test){
             int pos_y = y+j-1;
 
             if(pos_x >= 0 && pos_y >= 0 && pos_x < Test.getrow() && pos_y < Test.getcol()){
-                cout << "Current X: " << pos_x << " Current Y: " << pos_y << endl;
-                pos[i+j] = Test.getRobot(pos_x, pos_y);
-                if(pos[i+j] != nullptr){
-                    cout << pos[i+j]->getName() << endl;
+                // cout << "Current X: " << pos_x << " Current Y: " << pos_y << endl;
+                int index = i * 3 + j;
+                pos[index] = Test.getRobot(pos_x, pos_y);
+                if(pos[index] != nullptr){
+                    // cout << index << endl ;
+                    // cout << pos[index]->getName() << endl;
                 }
             }
         }
@@ -221,9 +250,9 @@ Robot** seePos(int x, int y, Battlefield &Test){
 void RobotCop::operation(Battlefield &Test){
     Robot** pos = see(Test);
     // for(int i = 0 ; i < 9 ; i++){
-        // if(pos[i] != nullptr){
-        //     cout << pos[i]->getName() << endl;
-        // }
+    //     if(pos[i] != nullptr){
+    //         cout << pos[i]->getName() << endl;
+    //     }
     // }
     move(pos, Test);
     
@@ -237,7 +266,7 @@ int main() {
     int field_Y = 10;
 	Battlefield Test(field_X, field_Y);
 
-    int numRobots = getRand(10);
+    int numRobots = 60;
 
     cout << numRobots << endl;
 
