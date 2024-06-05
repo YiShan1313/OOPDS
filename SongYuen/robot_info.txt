@@ -1,0 +1,9 @@
+M by N : 10 10
+steps: 10
+robots: 6
+UltimateRobot Alpha 5 8
+UltimateRobot Test 4 8
+UltimateRobot HAHA 6 8
+UltimateRobot gg 9 8
+UltimateRobot bb 8 8
+UltimateRobot dd 7 8
