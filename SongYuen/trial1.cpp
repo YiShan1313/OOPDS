@@ -114,7 +114,7 @@ class RobotCop : public SeeingRobot, public MovingRobot, public ShootingRobot
             }
 
 
-            cout << "move RobotCop" << endl << endl;
+            cout << "move RobotCop" << endl;
             bool existBot = true;
             int moveTo_X = -1;
             int moveTo_Y = -1;
@@ -153,7 +153,7 @@ class RobotCop : public SeeingRobot, public MovingRobot, public ShootingRobot
                 }
             }
 
-            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl << endl;
+            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl;
             int prev_X = getPos_X();
             int prev_Y = getPos_Y();
             setPosition(moveTo_X, moveTo_Y);
@@ -174,7 +174,7 @@ class RobotCop : public SeeingRobot, public MovingRobot, public ShootingRobot
                 fire_Y = y + getPos_Y();
             }
             
-            cout << "X: " << fire_X << " Y: " << fire_Y << endl;
+            cout << "X: " << fire_X << " Y: " << fire_Y << endl << endl;
 
             Robot* shoot = Test.getRobot(fire_X, fire_Y);
 
@@ -295,7 +295,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
             }
 
 
-            cout << "move RobotCop" << endl << endl;
+            cout << "move Terminator" << endl;
             bool existBot = true;
             int moveTo_X = -1;
             int moveTo_Y = -1;
@@ -334,7 +334,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                 }
             }
 
-            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl << endl;
+            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl;
             int prev_X = getPos_X();
             int prev_Y = getPos_Y();
             setPosition(moveTo_X, moveTo_Y);
@@ -342,7 +342,6 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
         }
 
         void step(Robot** robots, Battlefield &Test) {
-            cout << "move Terminator " << getName() << endl;
             bool existBot = true;
             int moveTo_X = -1;
             int moveTo_Y = -1;
@@ -373,7 +372,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
 
                             if(step != nullptr && step != this)
                             {
-                                cout << getName() << " --Step--> " << step->getName() << endl << endl ;
+                                cout << getName() << " --Step--> " << step->getName() << endl;
                                 Test.clearPos(step);
                                 step->killed();
                                 Score();
@@ -388,12 +387,6 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                     // cout << "ExistBot False~" << endl;
                 }
             }
-
-            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl << endl ;
-            int prev_X = getPos_X();
-            int prev_Y = getPos_Y();
-            setPosition(moveTo_X, moveTo_Y);
-            Test.updatePos(this, prev_X, prev_Y);
         }
         
 
@@ -434,7 +427,7 @@ class BlueThunder : public SeeingRobot, public MovingRobot, public SteppingRobot
 
         Robot** see(Battlefield &Test) 
         {
-            cout << "see RoboTank" << endl;
+            cout << "see BlueThunder" << endl;
             return seePos(getPos_X(), getPos_Y(), Test);
         }
 
@@ -467,7 +460,7 @@ class BlueThunder : public SeeingRobot, public MovingRobot, public SteppingRobot
                 direction = (direction + 1) % 4; 
             } while(fire_X >= Test.getrow() || fire_Y >= Test.getcol() || fire_X < 0 || fire_Y < 0);
 
-            cout << "X: " << fire_X << " Y: " << fire_Y << endl;
+            cout << "X: " << fire_X << " Y: " << fire_Y << endl << endl;
 
             Robot* shoot = Test.getRobot(fire_X, fire_Y);
 
@@ -597,7 +590,7 @@ class TerminatorRoboCop : public SeeingRobot, public MovingRobot, public Steppin
             }
 
 
-            cout << "move RobotCop" << endl << endl;
+            cout << "move TerminatorRoboCop" << endl;
             bool existBot = true;
             int moveTo_X = -1;
             int moveTo_Y = -1;
@@ -636,7 +629,7 @@ class TerminatorRoboCop : public SeeingRobot, public MovingRobot, public Steppin
                 }
             }
 
-            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl << endl;
+            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl;
             int prev_X = getPos_X();
             int prev_Y = getPos_Y();
             setPosition(moveTo_X, moveTo_Y);
@@ -644,7 +637,6 @@ class TerminatorRoboCop : public SeeingRobot, public MovingRobot, public Steppin
         }
 
         void step(Robot** robots, Battlefield &Test) {
-            cout << "move Terminator " << getName() << endl;
             bool existBot = true;
             int moveTo_X = -1;
             int moveTo_Y = -1;
@@ -690,12 +682,6 @@ class TerminatorRoboCop : public SeeingRobot, public MovingRobot, public Steppin
                     // cout << "ExistBot False~" << endl;
                 }
             }
-
-            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl << endl ;
-            int prev_X = getPos_X();
-            int prev_Y = getPos_Y();
-            setPosition(moveTo_X, moveTo_Y);
-            Test.updatePos(this, prev_X, prev_Y);
         }
 
         void fire(Robot** robots, Battlefield &Test) 
@@ -712,7 +698,7 @@ class TerminatorRoboCop : public SeeingRobot, public MovingRobot, public Steppin
                 fire_Y = y + getPos_Y();
             }
             
-            cout << "X: " << fire_X << " Y: " << fire_Y << endl;
+            cout << "X: " << fire_X << " Y: " << fire_Y << endl << endl ;
 
             Robot* shoot = Test.getRobot(fire_X, fire_Y);
 
@@ -764,7 +750,7 @@ class Madbot : public SeeingRobot, public MovingRobot, public ShootingRobot
         }
 
         Robot** see(Battlefield &Test) {
-            cout << "see Madbot" << endl << endl;
+            cout << "see Madbot" << endl;
             return seePos(getPos_X(), getPos_Y(), Test);
         }
 
@@ -780,12 +766,12 @@ class Madbot : public SeeingRobot, public MovingRobot, public ShootingRobot
                 fire_Y = y + getPos_Y();
             }
             
-            cout << "X: " << fire_X << " Y: " << fire_Y << endl;
+            cout << "X: " << fire_X << " Y: " << fire_Y << endl << endl;
 
             Robot* shoot = Test.getRobot(fire_X, fire_Y);
 
             if(shoot != nullptr){
-                cout << getName() << " --Shoot--> " << shoot->getName() << endl;
+                cout << getName() << " --Shoot--> " << shoot->getName() << endl << endl;
                 Test.clearPos(shoot);
                 shoot->killed();
                 cout << endl;
@@ -845,12 +831,12 @@ class RoboTank : public SeeingRobot, public MovingRobot, public ShootingRobot
                 fire_Y = y + getPos_Y();
             }
             
-            cout << "X: " << fire_X << " Y: " << fire_Y << endl;
+            cout << "X: " << fire_X << " Y: " << fire_Y << endl << endl;
 
             Robot* shoot = Test.getRobot(fire_X, fire_Y);
 
             if(shoot != nullptr){
-                cout << getName() << " --Shoot--> " << shoot->getName() << endl ;
+                cout << getName() << " --Shoot--> " << shoot->getName() << endl << endl;
                 Test.clearPos(shoot);
                 shoot->killed();
             }
@@ -896,7 +882,7 @@ public:
 
     Robot** see(Battlefield &Test) 
     {
-        cout << "see RoboTank" << endl;
+        cout << "see UltimateRobot" << endl;
         return seePos(getPos_X(), getPos_Y(), Test);
     }
 
@@ -940,7 +926,7 @@ public:
             }
 
 
-            cout << "move RobotCop" << endl << endl;
+            cout << "move UltimateRobot" << endl;
             bool existBot = true;
             int moveTo_X = -1;
             int moveTo_Y = -1;
@@ -979,7 +965,7 @@ public:
                 }
             }
 
-            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl << endl;
+            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl;
             int prev_X = getPos_X();
             int prev_Y = getPos_Y();
             setPosition(moveTo_X, moveTo_Y);
@@ -987,7 +973,6 @@ public:
         }
 
         void step(Robot** robots, Battlefield &Test) {
-            cout << "move Terminator " << getName() << endl;
             bool existBot = true;
             int moveTo_X = -1;
             int moveTo_Y = -1;
@@ -997,14 +982,6 @@ public:
                 int y = getRand(3) - 1 ;
                 moveTo_X = getPos_X() + x;
                 moveTo_Y = getPos_Y() + y;
-
-                while(moveTo_X >= Test.getrow() || moveTo_Y >= Test.getcol() || moveTo_X < 0 || moveTo_Y < 0)
-                {
-                    x = getRand(3) - 1 ;
-                    y = getRand(3) - 1 ;
-                    moveTo_X = getPos_X() + x;
-                    moveTo_Y = getPos_Y() + y;
-                }
 
                 // cout << "Trying to Move to (" << moveTo_X << " , " << moveTo_Y << ")" << endl;
                 
@@ -1033,12 +1010,6 @@ public:
                     // cout << "ExistBot False~" << endl;
                 }
             }
-
-            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl << endl ;
-            int prev_X = getPos_X();
-            int prev_Y = getPos_Y();
-            setPosition(moveTo_X, moveTo_Y);
-            Test.updatePos(this, prev_X, prev_Y);
         }
 
         void fire(Robot** robots, Battlefield &Test) 
@@ -1065,13 +1036,13 @@ public:
                 fire_Y = y + getPos_Y();
             }
             
-            cout << "X: " << fire_X << " Y: " << fire_Y << endl;
+            cout << "X: " << fire_X << " Y: " << fire_Y << endl << endl;
 
             Robot* shoot = Test.getRobot(fire_X, fire_Y);
 
             if(shoot != nullptr)
             {
-                cout << getName() << " --Shoot--> " << shoot->getName() << endl ;
+                cout << getName() << " --Shoot--> " << shoot->getName() << endl;
                 Test.clearPos(shoot);
                 shoot->killed();
                 Score();
@@ -1109,13 +1080,13 @@ public:
                 fire_Y = y + getPos_Y();
             }
             
-            cout << "X: " << fire_X << " Y: " << fire_Y << endl;
+            cout << "X: " << fire_X << " Y: " << fire_Y << endl << endl;
 
             Robot* shoot = Test.getRobot(fire_X, fire_Y);
 
             if(shoot != nullptr)
             {
-                cout << getName() << " --Shoot--> " << shoot->getName() << endl ;
+                cout << getName() << " --Shoot--> " << shoot->getName() << endl << endl;
                 Test.clearPos(shoot);
                 shoot->killed();
                 Score();
