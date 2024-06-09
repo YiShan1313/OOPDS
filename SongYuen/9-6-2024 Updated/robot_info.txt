@@ -1,0 +1,9 @@
+M by N : 10 10
+steps: 40
+robots: 7
+RoboCop Beta 5 8
+Terminator Alpha 2 8
+RoboCop gamma 9 8
+Terminator zeta 1 8
+RoboCop charlie 3 8
+Terminator haha 8 8
