@@ -69,6 +69,10 @@ public:
         
     }
 
+    bool ableToUpgrade(){
+        return true;
+    }
+
 
     // virtual void operation(Battlefield &Test)
     // {}
