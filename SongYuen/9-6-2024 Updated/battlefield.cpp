@@ -44,7 +44,7 @@ void Battlefield::display(Robot* Robots[], int numRobots) const {
 
             for(int u = 0; u < numRobots ; u++){
                 if(j == pos_x[u] && i == pos_y[u]){
-                    cout << "" << Robots[u]->getName() << " ";
+                    cout << " " << Robots[u]->getName() << " ";
                     setted = true;
                     break;
                 }
@@ -82,6 +82,21 @@ bool Battlefield::isEmptyPos(int x, int y)const{
     }
     else    
         return true;
+}
+
+
+//This function hjust for debugging
+void Battlefield::showPos(){
+    for(int i = 0 ; i < getrow() ; i++){
+        for(int j = 0 ; j < getcol() ; j++){
+            cout << "Current X: " << i << " Y: " << j << endl;
+            if(grid[i][j] != nullptr){
+                cout << "Dectected" << endl;
+            }else{
+                cout << "False" << endl;
+            }
+        }
+    }
 }
 
 Robot* Battlefield::getRobot(int x, int y)const{
