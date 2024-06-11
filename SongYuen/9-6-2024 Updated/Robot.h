@@ -1,4 +1,3 @@
-
 #ifndef Robot_H
 #define Robot_H
 
@@ -17,7 +16,7 @@ private:
     int pos_Y;
 
 public:
-    Robot(string n, int x, int y) : name(n), live(3), pos_X(x), pos_Y(y), score(0) {}
+    Robot(string n, int x, int y, int _live) : name(n), live(_live), pos_X(x), pos_Y(y), score(0) {}
     virtual ~Robot() {}
 
     int getPos_X() const {
@@ -61,17 +60,15 @@ public:
     void killed() {
         live --;
         cout << getName() << " your lives left " << live << endl;
-        if (live == 0)
-        {
-            setPosition(-1, -1);
-            cout << "dead" << endl;
-        }
+        // if (live == 0)
+        // {
+        //     setPosition(-1, -1);
+        //     cout << "dead" << endl;
+        // }
         
     }
 
-    bool ableToUpgrade(){
-        return true;
-    }
+    virtual bool ableToUpgrade() = 0;
 
 
     // virtual void operation(Battlefield &Test)
