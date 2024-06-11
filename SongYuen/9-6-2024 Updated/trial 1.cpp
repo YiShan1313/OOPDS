@@ -274,6 +274,9 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
             return (getLive() != 0);
         }
         
+        string getType() const {
+            return "Terminator";
+        }
 
         void operation(Battlefield &Test) override
         {
@@ -459,6 +462,9 @@ class RobotCop : public SeeingRobot, public MovingRobot, public ShootingRobot
         //     }
         // }
 
+        string getType() const {
+            return "RoboCop";
+        }
 
         void operation(Battlefield &Test) override
         {
@@ -556,6 +562,10 @@ class BlueThunder : public SeeingRobot, public MovingRobot, public SteppingRobot
 
         bool ableToUpgrade()override{
             return false;
+        }
+
+        string getType() const {
+            return "BlueThunder";
         }
 
         void operation(Battlefield &Test)
@@ -870,6 +880,9 @@ class TerminatorRoboCop : public SeeingRobot, public MovingRobot, public Steppin
             return (getLive() != 0);
         }
         
+        string getType() const {
+            return "TerminatorRoboCop";
+        }
 
         void operation(Battlefield &Test) override
         {
@@ -952,6 +965,10 @@ class Madbot : public SeeingRobot, public MovingRobot, public ShootingRobot
             return false;
         }
 
+        string getType() const {
+            return "Madbot";
+        }
+
         void operation(Battlefield &Test)
         {
             // IF this robot alive, then do, else skip...
@@ -1027,6 +1044,10 @@ class RoboTank : public SeeingRobot, public MovingRobot, public ShootingRobot
 
         bool ableToUpgrade()override{
             return false;
+        }
+
+        string getType() const {
+            return "RoboTank";
         }
 
         void operation(Battlefield &Test)
@@ -1305,6 +1326,10 @@ public:
             return false;
         }
     
+        string getType() const {
+            return "UltimateRobot";
+        }
+
         void operation(Battlefield &Test)
         {
             // IF this robot alive, then do, else skip...
@@ -1551,7 +1576,7 @@ int main()
             cout << "Unknown robot type: " << robotType << endl;
             continue;
         }
-        
+    
         Test.updatePos(robotList[numRobots]);
         numRobots++;
         cout << endl;
