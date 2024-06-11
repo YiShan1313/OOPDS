@@ -21,6 +21,7 @@ public:
     Robot* getRobot(int x, int y) const;
     int getrow() const { return rows; }
     int getcol() const { return cols; }
+    void showPos();  //This function hjust for debugging
 };
 
 #endif
