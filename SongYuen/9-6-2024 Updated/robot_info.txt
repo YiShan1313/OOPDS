@@ -1,9 +1,26 @@
 M by N : 10 10
 steps: 40
-robots: 7
+robots: 12
 RoboCop Beta 5 8
-Terminator Alpha 2 8
+RoboCop Alpha 2 8
 RoboCop gamma 9 8
-Terminator zeta 1 8
-RoboCop charlie 3 8
-Terminator haha 8 8
+RoboCop zeta 1 8
+RoboCop charlie random random
+RoboCop rtrtr random random
+RoboCop xz random random
+RoboCop 1 random random
+RoboCop 2 random random
+RoboCop 3 random random
+RoboCop 4 random random
+RoboCop 5 random random
+RoboCop 6 random random
+RoboCop ss random random
+RoboCop gd random random
+RoboCop ht random random
+RoboCop ku random random
+RoboCop po random random
+RoboCop vc random random
+RoboCop q random random
+RoboCop 43 random random
+RoboCop 646 random random
+RoboCop 98 random random
