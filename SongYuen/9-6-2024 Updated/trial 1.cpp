@@ -1401,25 +1401,39 @@ void upgrade1(Robot** robotList, int numRobots, Battlefield &Test) {
     for (int i = 0; i < numRobots; ++i) {
         if (robotList[i]->ableToUpgrade()) { 
 
-            if(robotList[i]->getType() == "RoboTank"){}
-            else if(robotList[i]->getType() == "Terminator"){}
-            else if(robotList[i]->getType() == "TerminatorRoboCop"){}
-            else if(robotList[i]->getType() == "BlueThunder"){}
-            else if(robotList[i]->getType() == "Madbot"){}
-            else if(robotList[i]->getType() == "RoboTank"){}
-            else if(robotList[i]->getType() == "UltimateRobot"){}
+            Robot *newRobot = nullptr;
 
-            cout << robotList[i]->getName() << " is upgrading to TerminatorRoboCop!" << endl;
+            if(robotList[i]->getType() == "RoboCop"){
+                cout << robotList[i]->getName() << " RoboCop is upgrading to TerminatorRoboCop!" << endl;
+                newRobot = new TerminatorRoboCop(robotList[i]->getName(), robotList[i]->getPos_X(), robotList[i]->getPos_Y(), robotList[i]->getLive());
+            }
+            else if(robotList[i]->getType() == "Terminator"){
+                cout << robotList[i]->getName() << " Terminator is upgrading to TerminatorRoboCop!" << endl;
+                newRobot = new TerminatorRoboCop(robotList[i]->getName(), robotList[i]->getPos_X(), robotList[i]->getPos_Y(), robotList[i]->getLive());
+            }
+            else if(robotList[i]->getType() == "TerminatorRoboCop"){
+                cout << robotList[i]->getName() << " TerminatorRoboCop is upgrading to UltimateRobot!" << endl;
+                newRobot = new UltimateRobot(robotList[i]->getName(), robotList[i]->getPos_X(), robotList[i]->getPos_Y(), robotList[i]->getLive());
+            }
+            else if(robotList[i]->getType() == "BlueThunder"){
+                cout << robotList[i]->getName() << " BlueThunder is upgrading to Madbot!" << endl;
+                newRobot = new Madbot(robotList[i]->getName(), robotList[i]->getPos_X(), robotList[i]->getPos_Y(), robotList[i]->getLive());
+            }
+            else if(robotList[i]->getType() == "Madbot"){
+                cout << robotList[i]->getName() << " Madbot is upgrading to RoboTank!" << endl;
+                newRobot = new RoboTank(robotList[i]->getName(), robotList[i]->getPos_X(), robotList[i]->getPos_Y(), robotList[i]->getLive());
+            }
+            else if(robotList[i]->getType() == "RoboTank"){
+                cout << robotList[i]->getName() << " RoboTank is upgrading to UltimateRobot!" << endl;
+                newRobot = new UltimateRobot(robotList[i]->getName(), robotList[i]->getPos_X(), robotList[i]->getPos_Y(), robotList[i]->getLive());
+            }
 
-            // Create a new Terminator object
-            TerminatorRoboCop* terminator = new TerminatorRoboCop(robotList[i]->getName(), robotList[i]->getPos_X(), robotList[i]->getPos_Y(), robotList[i]->getLive());
+            
 
             delete robotList[i];
-            cout << "Deleted RobotCop" << endl;
 
             // Replace the old RobotCop object with the new Terminator object in the robotList
-            robotList[i] = terminator;
-            cout << "RobotCop/Terminator Update To TerminatorRoboCop Sucess~" << endl;
+            robotList[i] = newRobot;
 
             
             Test.updatePos(robotList[i], robotList[i]->getPos_X(), robotList[i]->getPos_Y());
