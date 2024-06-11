@@ -1399,7 +1399,16 @@ public:
 
 void upgrade1(Robot** robotList, int numRobots, Battlefield &Test) {
     for (int i = 0; i < numRobots; ++i) {
-        if (robotList[i]->ableToUpgrade()) {
+        if (robotList[i]->ableToUpgrade()) { 
+
+            if(robotList[i]->getType() == "RoboTank"){}
+            else if(robotList[i]->getType() == "Terminator"){}
+            else if(robotList[i]->getType() == "TerminatorRoboCop"){}
+            else if(robotList[i]->getType() == "BlueThunder"){}
+            else if(robotList[i]->getType() == "Madbot"){}
+            else if(robotList[i]->getType() == "RoboTank"){}
+            else if(robotList[i]->getType() == "UltimateRobot"){}
+
             cout << robotList[i]->getName() << " is upgrading to TerminatorRoboCop!" << endl;
 
             // Create a new Terminator object
