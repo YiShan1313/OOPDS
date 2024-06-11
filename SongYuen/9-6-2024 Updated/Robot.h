@@ -30,6 +30,8 @@ public:
         return name;
     }
 
+    virtual string getType() const = 0;
+
     void setName(const string& n) {
         name = n;
     }
