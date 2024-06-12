@@ -50,7 +50,7 @@ public:
 class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot 
 {
     private:
-        int killCount{0};
+        int killCount = 0;
 
     public:
 
@@ -66,7 +66,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
 
         Robot** see(Battlefield &Test) 
         {
-            cout << "see Terminator" << endl;
+            //cout << "see Terminator" << endl;
             return seePos(getPos_X(), getPos_Y(), Test);
         }
 
@@ -88,7 +88,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                 // cout << counter;
                 if(counter == 4)
                 {
-                    cout << "Robot" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
+                    cout << "Terminator " << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
                     return;
                 }
             }
@@ -97,7 +97,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                 // cout << counter;
                 if(counter == 6)
                 {
-                    cout << "Robot" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
+                    cout << "Terminator " << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
                     return;
                 }
             }
@@ -106,13 +106,13 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                 // cout << counter;
                 if(counter == 9)
                 {
-                    cout << "Robot" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
+                    cout << " Terminator" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
                     return;
                 }
             }
 
 
-            cout << "move Terminator" << endl;
+            //cout << "move Terminator" << endl;
             bool existBot = true;
             int moveTo_X = -1;
             int moveTo_Y = -1;
@@ -151,7 +151,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                 }
             }
 
-            cout << "Robot" << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl;
+            cout << "Terminator " << getName() << " Moving to " << moveTo_X << " , " << moveTo_Y << endl;
             int prev_X = getPos_X();
             int prev_Y = getPos_Y();
             setPosition(moveTo_X, moveTo_Y);
@@ -175,7 +175,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                 // cout << counter;
                 if(counter == 4)
                 {
-                    cout << "Robot" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
+                    cout << "Terminator " << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
                     return;
                 }
             }
@@ -184,7 +184,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                 // cout << counter;
                 if(counter == 6)
                 {
-                    cout << "Robot" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
+                    cout << "Terminator " << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
                     return;
                 }
             }
@@ -193,13 +193,13 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                 // cout << counter;
                 if(counter == 9)
                 {
-                    cout << "Robot" << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
+                    cout << "Terminator " << getName() << " Cant Move As No Empty Space Surrounding !" << endl ;
                     return;
                 }
             }
 
 
-            cout << "step Terminator" << endl;
+            //scout << "step Terminator" << endl;
             bool existBot = false;
             int moveTo_X = -1;
             int moveTo_Y = -1;
@@ -244,7 +244,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
                     }
                 }
 
-                cout << "Robot" << getName() << " Stepping to Robot" << robotFound->getName() << " on Position " << moveTo_X << " , " << moveTo_Y << endl;
+                cout << "Terminator " << getName() << " Stepping to Robot" << robotFound->getName() << " on Position " << moveTo_X << " , " << moveTo_Y << endl;
                 int prev_X = getPos_X();
                 int prev_Y = getPos_Y();
 
@@ -271,7 +271,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
 
         bool ableToUpgrade() override{
             // Add to check killedcount later
-            return (getLive() != 0);
+            return (killCount == 3);
         }
         
         string getType() const {
@@ -307,7 +307,7 @@ class Terminator : public SeeingRobot, public MovingRobot, public SteppingRobot
 class RobotCop : public SeeingRobot, public MovingRobot, public ShootingRobot 
 {
     private:
-        int killCount{0};
+        int killCount = 0;
         //bool isUpgraded;
 
     public:
@@ -448,7 +448,7 @@ class RobotCop : public SeeingRobot, public MovingRobot, public ShootingRobot
 
         bool ableToUpgrade()override{
             // Add to check killedcount later
-            return (getLive() != 0);
+            return (killCount == 3);
         }
 
         // void upgrade(Robot** robots, Battlefield &Test) 
@@ -491,7 +491,7 @@ class RobotCop : public SeeingRobot, public MovingRobot, public ShootingRobot
 class BlueThunder : public SeeingRobot, public MovingRobot, public SteppingRobot 
 {
     private:
-        int killCount{0};
+        int killCount = 0;
 
     public:
 
@@ -548,7 +548,7 @@ class BlueThunder : public SeeingRobot, public MovingRobot, public SteppingRobot
                 Test.clearPos(shoot);
                 shoot->killed();
                 killCount++;
-                cout << "score " << killCount << endl << endl;
+                cout << "KillCount " << killCount << endl << endl;
                 // if (killCount >= 3) 
                 // {
                 //     upgradeToTerminator();
@@ -561,7 +561,7 @@ class BlueThunder : public SeeingRobot, public MovingRobot, public SteppingRobot
         }
 
         bool ableToUpgrade()override{
-            return false;
+            return (killCount == 3);
         }
 
         string getType() const {
@@ -625,7 +625,7 @@ Robot** seePos(int x, int y, Battlefield &Test)
 class TerminatorRoboCop : public SeeingRobot, public MovingRobot, public SteppingRobot, public ShootingRobot 
 {
     private:
-        int killCount{0};
+        int killCount = 0;
 
     public:
 
@@ -877,7 +877,7 @@ class TerminatorRoboCop : public SeeingRobot, public MovingRobot, public Steppin
 
         bool ableToUpgrade() override{
             // Add to check killedcount later
-            return (getLive() != 0);
+            return (killCount == 3);
         }
         
         string getType() const {
@@ -914,7 +914,7 @@ class TerminatorRoboCop : public SeeingRobot, public MovingRobot, public Steppin
 class Madbot : public SeeingRobot, public MovingRobot, public ShootingRobot 
 {
     private:
-        int killCount{0};
+        int killCount = 0;
 
     public:
         Madbot(string n, int x, int y, int _live) : Robot(n,x,y,_live){
@@ -930,13 +930,14 @@ class Madbot : public SeeingRobot, public MovingRobot, public ShootingRobot
             return seePos(getPos_X(), getPos_Y(), Test);
         }
 
-        void fire(Robot** robots, Battlefield &Test) {
+        void fire(Robot** robots, Battlefield &Test) 
+        {
             int fire_X, fire_Y, x = 0, y = 0;
-
-            while(fire_X >= Test.getrow() || fire_Y >= Test.getcol() || fire_X < 0 || fire_Y < 0 || (x == 0 && y == 0)){
-                x = getRand(20) - 2;
-                int y_Range = 2 - absValue(x);
-                y = getRand(2 * y_Range + 1) - y_Range; // 2*yrange give double of the range, then - the range give random + / - num
+            while(fire_X >= Test.getrow() || fire_Y >= Test.getcol() || fire_X < 0 || fire_Y < 0 || (x == 0 && y == 0))
+            {
+                x = getRand(20) - 10;
+                int y_Range = 10 - absValue(x);
+                y = getRand(1) == 0 ? y_Range : -y_Range; // Random +/-
 
                 fire_X = x + getPos_X();
                 fire_Y = y + getPos_Y();
@@ -946,15 +947,14 @@ class Madbot : public SeeingRobot, public MovingRobot, public ShootingRobot
 
             Robot* shoot = Test.getRobot(fire_X, fire_Y);
 
-            if(shoot != nullptr){
-                cout << getName() << " --Shoot--> " << shoot->getName() << endl << endl;
-                Test.clearPos(shoot);
+            if(shoot != nullptr)
+            {
+                cout << getName() << " --Shoot--> " << shoot->getName() << endl;
+                shoot->killed();
+                if(shoot->getLive() == 0)
+                    Test.clearPos(shoot);
                 killCount++;
-                cout << "score " << killCount << endl << endl;
-                // if (killCount >= 3) 
-                // {
-                //     upgradeToTerminator();
-                // }
+                cout << "KillCount " << killCount << endl << endl;
             }
 
             // Get Field Info
@@ -962,7 +962,7 @@ class Madbot : public SeeingRobot, public MovingRobot, public ShootingRobot
         }
 
         bool ableToUpgrade()override{
-            return false;
+            return (killCount == 3);
         }
 
         string getType() const {
@@ -994,7 +994,7 @@ class Madbot : public SeeingRobot, public MovingRobot, public ShootingRobot
 class RoboTank : public SeeingRobot, public MovingRobot, public ShootingRobot 
 {
     private:
-        int killCount{0};
+        int killCount = 0;
 
     public:
         RoboTank(string n, int x, int y, int _live) : Robot(n,x,y,_live){
@@ -1031,7 +1031,7 @@ class RoboTank : public SeeingRobot, public MovingRobot, public ShootingRobot
                 Test.clearPos(shoot);
                 shoot->killed();
                 killCount++;
-                cout << "score " << killCount << endl << endl;
+                cout << "KillCount " << killCount << endl << endl;
                 // if (killCount >= 3) 
                 // {
                 //     upgradeToTerminator();
@@ -1043,7 +1043,7 @@ class RoboTank : public SeeingRobot, public MovingRobot, public ShootingRobot
         }
 
         bool ableToUpgrade()override{
-            return false;
+            return (killCount == 3);
         }
 
         string getType() const {
@@ -1075,7 +1075,7 @@ class RoboTank : public SeeingRobot, public MovingRobot, public ShootingRobot
 class UltimateRobot : public SeeingRobot, public MovingRobot, public ShootingRobot 
 {
     private:
-        int killCount{0};
+        int killCount = 0;
 public:
     UltimateRobot(string n, int x, int y, int _live) : Robot(n,x,y,_live)
     {
@@ -1206,7 +1206,7 @@ public:
                                 Test.clearPos(step);
                                 step->killed();
                                 killCount++;
-                                cout << "score " << killCount << endl << endl;
+                                cout << "KillCount " << killCount << endl << endl;
                                 // if (killCount >= 3) 
                                 // {
                                 //     upgradeToTerminator();
@@ -1258,7 +1258,7 @@ public:
                 Test.clearPos(shoot);
                 shoot->killed();
                 killCount++;
-                cout << "score " << killCount << endl << endl;
+                cout << "KillCount " << killCount << endl << endl;
                 // if (killCount >= 3) 
                 // {
                 //     upgradeToTerminator();
@@ -1307,7 +1307,7 @@ public:
                 Test.clearPos(shoot);
                 shoot->killed();
                 killCount++;
-                cout << "score " << killCount << endl << endl;
+                cout << "KillCount " << killCount << endl << endl;
                 // if (killCount >= 3) 
                 // {
                 //     upgradeToTerminator();
@@ -1607,7 +1607,7 @@ int main()
     
     Test.display(robotList, numRobots);
 
-    for (int j = 0; j < 5; j++) 
+    for (int j = 0; j < stepp; j++) 
     {
         for (int i = 0; i < numRobots; i++) 
         {
